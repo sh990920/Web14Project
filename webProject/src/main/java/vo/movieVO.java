@@ -2,14 +2,14 @@ package vo;
 
 public class movieVO {
 	private int idx;					//PK
-	private String movieName;			//영화 제목
+	private String moviename;			//영화 제목
 	private String actor;				//출연진
-	private String launchDate;			//개봉일
+	private String launchdate;			//개봉일
 	private String story;				//줄거리
 	private String genre;				//장르
 	private String score;				//별점
-	private String movieClass;			//영화 등급?심의?
-	private String movieUrl;			//영화 경로
+	private String movieclass;			//영화 등급?심의?
+	private String movieurl;			//영화 경로
 	
 	//setter, getter
 	public int getIdx() {
@@ -18,11 +18,11 @@ public class movieVO {
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}
-	public String getMovieName() {
-		return movieName;
+	public String getMoviename() {
+		return moviename;
 	}
-	public void setMovieName(String movieName) {
-		this.movieName = movieName;
+	public void setMoviename(String moviename) {
+		this.moviename = moviename;
 	}
 	public String getActor() {
 		return actor;
@@ -30,11 +30,11 @@ public class movieVO {
 	public void setActor(String actor) {
 		this.actor = actor;
 	}
-	public String getLaunchDate() {
-		return launchDate;
+	public String getLaunchdate() {
+		return launchdate;
 	}
-	public void setLaunchDate(String launchDate) {
-		this.launchDate = launchDate;
+	public void setLaunchdate(String launchdate) {
+		this.launchdate = launchdate;
 	}
 	public String getStory() {
 		return story;
@@ -54,17 +54,17 @@ public class movieVO {
 	public void setScore(String score) {
 		this.score = score;
 	}
-	public String getMovieClass() {
-		return movieClass;
+	public String getMovieclass() {
+		return movieclass;
 	}
-	public void setMovieClass(String movieClass) {
-		this.movieClass = movieClass;
+	public void setMovieclass(String movieclass) {
+		this.movieclass = movieclass;
 	}
-	public String getMovieUrl() {
-		return movieUrl;
+	public String getMovieurl() {
+		return movieurl;
 	}
-	public void setMovieUrl(String movieUrl) {
-		this.movieUrl = movieUrl;
+	public void setMovieurl(String movieurl) {
+		this.movieurl = movieurl;
 	}
 	
 	

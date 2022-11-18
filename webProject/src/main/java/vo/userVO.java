@@ -5,11 +5,11 @@ public class userVO {
 	private String id;					//사용자 id
 	private String pw;					//사용자 pw
 	private String name;				//사용자 이름
-	private String phoneNum;			//사용자 핸드폰 번호
+	private String phonenum;			//사용자 핸드폰 번호
 	private String email;				//사용자 이메일
 	private String regdate;				//사용자 가입 날짜
 	private String birthdate;			//사용자 생년월일
-	private String selectMovie;			//사용자 찜목록
+	private String selectmovie;			//사용자 찜목록
 	private int age;					//사용자 나이
 	private String nickname;			//사용자 닉네임
 	
@@ -38,11 +38,11 @@ public class userVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPhoneNum() {
-		return phoneNum;
+	public String getPhonenum() {
+		return phonenum;
 	}
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
+	public void setPhonenum(String phonenum) {
+		this.phonenum = phonenum;
 	}
 	public String getEmail() {
 		return email;
@@ -62,11 +62,11 @@ public class userVO {
 	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
-	public String getSelectMovie() {
-		return selectMovie;
+	public String getSelectmovie() {
+		return selectmovie;
 	}
-	public void setSelectMovie(String selectMovie) {
-		this.selectMovie = selectMovie;
+	public void setSelectmovie(String selectmovie) {
+		this.selectmovie = selectmovie;
 	}
 	public int getAge() {
 		return age;
