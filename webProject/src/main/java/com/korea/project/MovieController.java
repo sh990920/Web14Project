@@ -23,10 +23,8 @@ public class MovieController {
 	
 	@RequestMapping(value = {"/", "list.do"})
 	public String main() {
-		return Comm.PATH + "main.jsp";
+		return Comm.PATH + "movie/beforeLogin.jsp";
 	}
 	
-	
-	
-	
+
 }

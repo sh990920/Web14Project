@@ -1,0 +1,39 @@
+.signup_container{
+            
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    position:relative;
+}
+.input_container{
+    display: flex;
+    flex-direction: column;
+    
+}
+.input_box{
+    width: 500px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+.input{
+    padding: 4px;
+    font-size: 16px;
+}
+input:focus::-webkit-input-placeholder{
+    color:transparent;
+}
+.id_box{
+  width:500px;
+  margin: 20px 0;
+  padding-left: 118px;
+}
+.id_btn{
+    margin-left: 20px;;
+}
+.signup_btn{
+    width:200px;
+    height: 32px;
+}

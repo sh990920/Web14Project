@@ -1,84 +1,88 @@
 package vo;
 
 public class UserVO {
-	private int idx;					//PK
-	private String id;					//사용자 id
-	private String pw;					//사용자 pw
-	private String name;				//사용자 이름
-	private String phonenum;			//사용자 핸드폰 번호
-	private String email;				//사용자 이메일
-	private String regdate;				//사용자 가입 날짜
-	private String birthdate;			//사용자 생년월일
-	private String selectmovie;			//사용자 찜목록
-	private int age;					//사용자 나이
-	private String nickname;			//사용자 닉네임
+	private int userIdx;					//PK
+	private String userId;					//사용자 id
+	private String userPw;					//사용자 비밀번
+	private String userName;				//사용자 이름
+	private String userPhoneNum;			//사용자 핸드폰 번호
+	private String userEmail;				//사용자 이메일
+	private String userRegdate;				//사용자 가입 날짜
+	private String userBirthDate;			//사용자 생년월일
+	private String userNickName;			//사용자 닉네임
+	private int userAge;					//사용자 나이
+	private String userMembership;			//유저 멤버십
+	
 	
 	//getter, setter
-	public int getIdx() {
-		return idx;
+	public int getUserIdx() {
+		return userIdx;
 	}
-	public void setIdx(int idx) {
-		this.idx = idx;
+	public void setUserIdx(int userIdx) {
+		this.userIdx = userIdx;
 	}
-	public String getId() {
-		return id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getPw() {
-		return pw;
+	public String getUserPw() {
+		return userPw;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
 	}
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getPhonenum() {
-		return phonenum;
+	public String getUserPhoneNum() {
+		return userPhoneNum;
 	}
-	public void setPhonenum(String phonenum) {
-		this.phonenum = phonenum;
+	public void setUserPhoneNum(String userPhoneNum) {
+		this.userPhoneNum = userPhoneNum;
 	}
-	public String getEmail() {
-		return email;
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
-	public String getRegdate() {
-		return regdate;
+	public String getUserRegdate() {
+		return userRegdate;
 	}
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
+	public void setUserRegdate(String userRegdate) {
+		this.userRegdate = userRegdate;
 	}
-	public String getBirthdate() {
-		return birthdate;
+	public String getUserBirthDate() {
+		return userBirthDate;
 	}
-	public void setBirthdate(String birthdate) {
-		this.birthdate = birthdate;
+	public void setUserBirthDate(String userBirthDate) {
+		this.userBirthDate = userBirthDate;
 	}
-	public String getSelectmovie() {
-		return selectmovie;
+	public String getUserNickName() {
+		return userNickName;
 	}
-	public void setSelectmovie(String selectmovie) {
-		this.selectmovie = selectmovie;
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
 	}
-	public int getAge() {
-		return age;
+	public int getUserAge() {
+		return userAge;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getUserMembership() {
+		return userMembership;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setUserMembership(String userMembership) {
+		this.userMembership = userMembership;
 	}
+	
+	
+	
 }
 

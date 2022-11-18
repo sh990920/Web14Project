@@ -1,71 +1,58 @@
 package vo;
 
 public class MovieVO {
-	private int idx;					//PK
-	private String moviename;			//영화 제목
-	private String actor;				//출연진
-	private String launchdate;			//개봉일
-	private String story;				//줄거리
-	private String genre;				//장르
-	private String score;				//별점
-	private String movieclass;			//영화 등급?심의?
-	private String movieurl;			//영화 경로
+	private int movieIdx;				//PK, 영화 인덱스 번호
+	private String movieName;			//영화 제목
+	private String movieLaunchDate;		//개봉일
+	private String movieStory;			//줄거리
+	private String movieGenre;			//장르
+	private String movieClass;			//영화 심의등급
+	private String movieUrl;			//영화 경로
 	
-	//setter, getter
-	public int getIdx() {
-		return idx;
+	//getter, setter
+	public int getMovieIdx() {
+		return movieIdx;
 	}
-	public void setIdx(int idx) {
-		this.idx = idx;
+	public void setMovieIdx(int movieIdx) {
+		this.movieIdx = movieIdx;
 	}
-	public String getMoviename() {
-		return moviename;
+	public String getMovieName() {
+		return movieName;
 	}
-	public void setMoviename(String moviename) {
-		this.moviename = moviename;
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
 	}
-	public String getActor() {
-		return actor;
+	public String getMovieLaunchDate() {
+		return movieLaunchDate;
 	}
-	public void setActor(String actor) {
-		this.actor = actor;
+	public void setMovieLaunchDate(String movieLaunchDate) {
+		this.movieLaunchDate = movieLaunchDate;
 	}
-	public String getLaunchdate() {
-		return launchdate;
+	public String getMovieStory() {
+		return movieStory;
 	}
-	public void setLaunchdate(String launchdate) {
-		this.launchdate = launchdate;
+	public void setMovieStory(String movieStory) {
+		this.movieStory = movieStory;
 	}
-	public String getStory() {
-		return story;
+	public String getMovieGenre() {
+		return movieGenre;
 	}
-	public void setStory(String story) {
-		this.story = story;
+	public void setMovieGenre(String movieGenre) {
+		this.movieGenre = movieGenre;
 	}
-	public String getGenre() {
-		return genre;
+	public String getMovieClass() {
+		return movieClass;
 	}
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setMovieClass(String movieClass) {
+		this.movieClass = movieClass;
 	}
-	public String getScore() {
-		return score;
+	public String getMovieUrl() {
+		return movieUrl;
 	}
-	public void setScore(String score) {
-		this.score = score;
+	public void setMovieUrl(String movieUrl) {
+		this.movieUrl = movieUrl;
 	}
-	public String getMovieclass() {
-		return movieclass;
-	}
-	public void setMovieclass(String movieclass) {
-		this.movieclass = movieclass;
-	}
-	public String getMovieurl() {
-		return movieurl;
-	}
-	public void setMovieurl(String movieurl) {
-		this.movieurl = movieurl;
-	}
+	
 	
 	
 	
