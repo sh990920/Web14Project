@@ -9,8 +9,8 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="vo.userVO" alias="user"/>
-		<typeAlias type="vo.movieVO" alias="movie"/>
+		<typeAlias type="vo.UserVO" alias="user"/>
+		<typeAlias type="vo.MovieVO" alias="movie"/>
 	</typeAliases>
 	
 	<mappers>

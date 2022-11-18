@@ -35,6 +35,14 @@
 		<beans:property name="board_dao" ref="board_daoBean"/> 
 	</beans:bean> -->
 	
+	<beans:bean class="com.korea.project.UserController">
+		<beans:constructor-arg ref="user_DaoBean"/>
+	</beans:bean>
+	
+	<beans:bean class="com.korea.project.MovieController">
+		<beans:constructor-arg ref="movie_DaoBean"/>
+	</beans:bean>
+	
 </beans:beans>
 
 

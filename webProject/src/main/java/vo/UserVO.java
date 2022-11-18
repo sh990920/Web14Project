@@ -1,6 +1,6 @@
 package vo;
 
-public class userVO {
+public class UserVO {
 	private int idx;					//PK
 	private String id;					//사용자 id
 	private String pw;					//사용자 pw
@@ -81,3 +81,4 @@ public class userVO {
 		this.nickname = nickname;
 	}
 }
+

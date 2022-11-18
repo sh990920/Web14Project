@@ -1,6 +1,6 @@
 package vo;
 
-public class movieVO {
+public class MovieVO {
 	private int idx;					//PK
 	private String moviename;			//영화 제목
 	private String actor;				//출연진
