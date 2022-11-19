@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="b">
+<mapper namespace="s">
 
 	<!-- 별점 등록 -->
 	<insert id="give_score" parameterType="vo.ScoreVO">
