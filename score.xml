@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+
+	<!-- 별점 등록 -->
+	<insert id="give_score" parameterType="vo.ScoreVO">
+		insert into score values(
+			seq_score_scoreidx.nextVal, 
+			#{userId}, 
+			#{movieName}, 
+			#{starScore}, 
+			
+		)
+	</insert>
+
+	<!-- 내가 올린 별점 확인 -->
+	<select id="check_score" parameterType="vo.UserVO">
+		select * WHERE userId = #{userId}
+	</select>
+	
+	<!-- 별점 삭제 -->
+	<delete id="delete_score" parameterType="vo.UserVO">
+		delete * from score where userId = #{userId} and movieName=#{movieName}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

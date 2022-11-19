@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="us">
+
+	<!-- 회원가입 -->
+	<insert id="regUser" parameterType="userVO">
+		insert into user 
+		(userIdx, userId, userPw, userName, userPhoneNum, userEmail, userRegdate, userBirthDate, userNickName)
+		values 
+		(#{userIdx}, #{userId}, #{userPw}, #{userName}, #{userPhoneNum}, #{userEmail}, sysdate, #{userBirthDate}, #{userNickName})
+	</insert>
+
+	<!-- 로그인 -->
+	<select id="login" resultType="vo.UserVO" parameterType="String">
+		select * from user where userId=#{userId} and userPw=#{userPw}
+	</select>
+	
+	<!-- 이메일로 ID찾기 -->
+	<select id="find_id_e" parameterType="String" resultType="String">
+		select * from user where userEmail = #{userEmail}
+	</select>
+	
+	<!-- 전화번호로 ID찾기 -->
+	<select id="find_id_p" parameterType="String" resultType="String">
+		select * from user where userPhoneNum=#{userPhoneNum}
+	</select>
+	
+	<!-- 이메일로 비밀번호 찾기 -->
+	<select id="find_pw_e" resultType="String" parameterType="String">
+		select * from user where userId=#{userId} and userEmail=#{userEmail}
+	</select>
+	
+	<!-- 전화번호로 비밀번호 찾기 -->
+	<select id="find_pw_p" resultType="String" parameterType="String">
+		select * from user where userId=#{userId} and userPhoneNum=#{userPhoneNum}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="change_pw" parameterType="vo.UserVO">
+		update user SET userPw = #{userPw} WHERE userPhoneNum = #{userPhoneNum}
+	</update>
+	
+	<!-- 이메일 변경 -->
+	<update id="change_email" parameterType="vo.UserVO">
+		update user SET userEmail = #{userEmail} WHERE userId = #{userId}
+	</update>
+	
+	<!-- 이름 변경 -->
+	<update id="change_name" parameterType="vo.UserVO">
+		update user SET userName = #{userName} WHERE userId = #{userId}
+	</update>
+	
+	<!-- 전화번호 변경 -->
+	<update id="change_phone" parameterType="vo.UserVO">
+		update user SET userPhoneNum = #{userPhoneNum} WHERE userId = #{userId}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="byeMember" parameterType="vo.UserVO">
+        delete * FROM member WHERE userId = #{userId} and email = #{email}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
