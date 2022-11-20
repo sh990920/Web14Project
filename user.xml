@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 회원가입 -->
 	<insert id="regUser" parameterType="userVO">
 		insert into user values 
-		(seq_user_useridx.nextVal, , #{userId}, #{userPw}, #{userName}, #{userPhoneNum}, #{userEmail}, sysdate, #{userBirthDate}, #{userNickName})
+		(seq_user_userIdx.nextVal, , #{userId}, #{userPw}, #{userName}, #{userPhoneNum}, #{userEmail}, sysdate, #{userBirthDate}, #{userNickName})
 	</insert>
 
 	<!-- 로그인 -->
