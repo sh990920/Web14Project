@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 별점 등록 -->
 	<insert id="give_score" parameterType="vo.ScoreVO">
 		insert into score values(
-			seq_score_scoreidx.nextVal, 
+			seq_score_scoreIdx.nextVal, 
 			#{userId}, 
 			#{movieName}, 
 			#{starScore}, 
