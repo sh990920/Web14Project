@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 새댓글작성  -->
 	<insert id="reply_insert" parameterType="vo.ReplyVO">
 		insert into reply values(
-			seq_board_replyIdx.nextVal, 
+			seq_reply_replyIdx.nextVal, 
 			#{movieName}, 
 			#{replyComment}, 
 			#{userId},  
