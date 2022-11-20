@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+
+	<!-- 찜 영화 목록 -->
+	<select id="UserSelect" resultType="VO.UserSelectVO">
+		select * from userselect 
+	</select>
+	
+	<!-- 영화 찜하기 -->
+	<insert id="selectmovie" parameterType="VO.UserSelectVO">
+		insert into userselect
+		values (seq_UserSelect_userSelectIdx.nextVal, #{userId}, #{movieName})
+	</insert>
+	
+	<!-- 찜 목록에서 제거 -->
+	<delete id="delete_select" parameterType="VO.UserSelectVO">
+		delete * from userselect where userselectIdx = #{userSelectIdx}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
