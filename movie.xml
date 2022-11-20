@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mv">
+
+	<!-- 영화 제목으로 검색  -->
+	<select id="movie_name" resultType="VO.MovieVO" parameterType="String">
+		select * from movie where movieName=#{movieName}
+	</select>
+	
+	
+	<!-- 영화 데이터 추가  -->
+	<insert id="movie_insert" parameterType="VO.MovieVO">
+		insert into movie 
+		values (seq_movie_movieIdx.nextVal, #{movieName}, #{movieLaunchDate}, #{movieStory}, #{movieGenre}, #{movieClass}, #{movieUrl})
+	</insert>
+		
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
