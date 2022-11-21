@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 찜 목록에서 제거 -->
 	<delete id="delete_select" parameterType="VO.UserSelectVO">
-		delete * from userselect where userselectIdx = #{userSelectIdx}
+		delete * from userselect where userId = #{userId}, movieName = #{movieName}
 	</delete>
 </mapper>
 
