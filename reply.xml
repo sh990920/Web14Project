@@ -17,8 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		
 	<!-- 삭제-->
-	<delete id="delete_reply" parameterType="vo.ReplyVO">
-		delete * from reply where replyIdx = #{replyIdx}
+	<delete id="delete_reply">
+		delete from reply where movieName = #{movieName} and userId = #{userId}
 	</delete>
 	
 	<!-- 댓글 불러오기-->
