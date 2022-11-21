@@ -9,6 +9,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board
 	</select> -->
 	
+	<insert id="signUp" parameterType="user">
+		INSERT INTO user VALUES(
+			<!-- idx 1씩 상승하게 시퀀스 사용
+				 id
+				 pw
+				 name
+				 phoneNum
+				 email
+				 sysdate
+				 birthdate
+				 nickname
+				  -->
+		);
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="String">
+		select * from user userId=#{userId}
+	</select>
 	
 </mapper>
 

@@ -1,6 +1,7 @@
 package vo;
 
 public class ScoreVO {
+	//영화 별점 테이블
 	private int scoreIdx;		//별점 idx
 	private String userId;		//유저 테이블에서 끌어올 유저아이디
 	private String movieName;	//영화 테이블에서 끌어올 영화제목

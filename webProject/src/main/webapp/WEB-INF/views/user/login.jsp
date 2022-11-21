@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/project/resources/style/reset.css">
 <link rel="stylesheet" href="/project/resources/style/login.css">
+<script type="/project/resources/js/httpRequest.js"></script>
 </head>
 <body>
 	<div class="signup_container">
@@ -30,7 +31,7 @@
 				</div>
 				<div class="input_box">
 					<!-- 로그인 버튼 -->
-					<button class="login_btn btn" type="button" onclick="">로그인</button>
+					<button class="login_btn btn" type="button" onclick="login(this.form);">로그인</button>
 				</div>
 				<div class="input_box">
 					<!-- 자동로그인 체크박스 -->
@@ -45,5 +46,40 @@
 		</div>
 
 	</div>
+	
+	<script>
+		function login(f){
+			var userId = f.userId.value;
+			var userPw = f.userPw.value;
+			
+			if(userId == ''){
+				alert("ID는 필수입니다.");
+				return;
+			}
+			if(userPw == ''){
+				alert("비밀번호는 필수입니다.");
+				return;
+			}
+			
+			var url = "login.do";
+			var param = "userId=" + userId + "userPw=" + userPw;
+			sendRequest(url, param, resultFn, "post");
+			
+			
+		}
+		function resultFn(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var data = xhr.responseText;
+				if(data != 'yes'){
+					alert('로그인 실패');
+					return;
+				}else{
+					alert('로그인 성공');
+					location.href = "afterLogin.do";
+				}
+			}
+		}
+	</script>
+	
 </body>
 </html>

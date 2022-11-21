@@ -1,17 +1,18 @@
 package vo;
 
 public class UserVO {
+	//유저 정보 테이블
 	private int userIdx;					//PK
 	private String userId;					//사용자 id
 	private String userPw;					//사용자 비밀번
 	private String userName;				//사용자 이름
 	private String userPhoneNum;			//사용자 핸드폰 번호
 	private String userEmail;				//사용자 이메일
-	private String userRegdate;				//사용자 가입 날짜
+	private String userRegDate;				//사용자 가입 날짜
 	private String userBirthDate;			//사용자 생년월일
 	private String userNickName;			//사용자 닉네임
 	private int userAge;					//사용자 나이
-	private String userMembership;			//유저 멤버십
+	private String userMemberShip;			//유저 멤버십
 	
 	
 	//getter, setter
@@ -51,11 +52,11 @@ public class UserVO {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getUserRegdate() {
-		return userRegdate;
+	public String getUserRegDate() {
+		return userRegDate;
 	}
-	public void setUserRegdate(String userRegdate) {
-		this.userRegdate = userRegdate;
+	public void setUserRegDate(String userRegDate) {
+		this.userRegDate = userRegDate;
 	}
 	public String getUserBirthDate() {
 		return userBirthDate;
@@ -75,11 +76,11 @@ public class UserVO {
 	public void setUserAge(int userAge) {
 		this.userAge = userAge;
 	}
-	public String getUserMembership() {
-		return userMembership;
+	public String getUserMemberShip() {
+		return userMemberShip;
 	}
-	public void setUserMembership(String userMembership) {
-		this.userMembership = userMembership;
+	public void setUserMemberShip(String userMemberShip) {
+		this.userMemberShip = userMemberShip;
 	}
 	
 	

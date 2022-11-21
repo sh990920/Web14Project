@@ -1,6 +1,7 @@
 package vo;
 
 public class MovieVO {
+	//영화 정보 테이블
 	private int movieIdx;				//PK, 영화 인덱스 번호
 	private String movieName;			//영화 제목
 	private String movieLaunchDate;		//개봉일

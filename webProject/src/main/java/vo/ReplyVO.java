@@ -1,6 +1,7 @@
 package vo;
 
 public class ReplyVO {
+	//유저 댓글 테이블
 	private int replyIdx;			//idx
 	private String movieName;		//영화 테이블에서 끌어올 영화제목
 	private String replyComment;	//댓글 내용

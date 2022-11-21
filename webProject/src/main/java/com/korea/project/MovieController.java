@@ -21,10 +21,15 @@ public class MovieController {
 		this.movieDao = movieDao;
 	}
 	
-	@RequestMapping(value = {"/", "list.do"})
+	@RequestMapping(value = {"/", "beforeLogin.do"})
 	public String main() {
-		return Comm.PATH + "movie/beforeLogin.jsp";
+		return Comm.MOVIEPATH + "beforeLogin.jsp";
 	}
 	
-
+	@RequestMapping(value = {"/", "afterLogin.do"})
+	public String Main() {
+		return Comm.MOVIEPATH + "afterLogin.jsp";
+	}
+	
+	
 }
