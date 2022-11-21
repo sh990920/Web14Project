@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 회원탈퇴 -->
 	<delete id="byeMember" parameterType="vo.UserVO">
-        delete * FROM member WHERE userId = #{userId} and email = #{email}
+        delete FROM member WHERE userId = #{userId} and email = #{email}
     </delete>
 </mapper>
 
