@@ -21,8 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 별점 삭제 -->
-	<delete id="delete_score" parameterType="vo.UserVO">
-		delete * from score where userId = #{userId} and movieName=#{movieName}
+	<delete id="delete_score">
+		delete from score where userId = #{userId} and movieName=#{movieName}
 	</delete>
 	
 </mapper>
