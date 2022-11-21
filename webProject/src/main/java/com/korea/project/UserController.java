@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.UserDAO;
 import util.Comm;
@@ -30,19 +31,23 @@ public class UserController {
 	
 	//로그인
 	@RequestMapping("login.do")
+	@ResponseBody
 	public String login(UserVO vo) {
-		int res = userDao.login(vo);
+		UserVO baseVO = userDao.loginId(vo);
 		String result = "no";
-		if(res == 1) {
+		if(baseVO != null) {
+			result = "idOk";
+		}
+		baseVO = userDao.loginPw(vo);
+		if(baseVO != null) {
 			result = "yes";
 		}
+		
 		return result;
 	}
 	
-	
-	
 	//회원가입 페이지로 이동
-	@RequestMapping(value = {"signUpForm.do"})
+	@RequestMapping(value = {"/signUpForm.do"})
 	public String join() {
 		return Comm.USERPATH + "signUp.jsp";
 	}

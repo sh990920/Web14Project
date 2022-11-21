@@ -64,6 +64,7 @@ public class UserVO {
 	public void setUserBirthDate(String userBirthDate) {
 		this.userBirthDate = userBirthDate;
 	}
+
 	public String getUserNickName() {
 		return userNickName;
 	}

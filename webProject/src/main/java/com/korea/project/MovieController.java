@@ -26,7 +26,7 @@ public class MovieController {
 		return Comm.MOVIEPATH + "beforeLogin.jsp";
 	}
 	
-	@RequestMapping(value = {"/", "afterLogin.do"})
+	@RequestMapping(value = {"afterLogin.do"})
 	public String Main() {
 		return Comm.MOVIEPATH + "afterLogin.jsp";
 	}

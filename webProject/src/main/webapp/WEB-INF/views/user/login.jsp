@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/project/resources/style/reset.css">
 <link rel="stylesheet" href="/project/resources/style/login.css">
-<script type="/project/resources/js/httpRequest.js"></script>
+<script src="/project/resources/js/httpRequest.js"></script>
 </head>
 <body>
 	<div class="signup_container">
@@ -62,7 +62,7 @@
 			}
 			
 			var url = "login.do";
-			var param = "userId=" + userId + "userPw=" + userPw;
+			var param = "userId=" + userId + "&userPw=" + userPw;
 			sendRequest(url, param, resultFn, "post");
 			
 			
@@ -70,10 +70,13 @@
 		function resultFn(){
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var data = xhr.responseText;
-				if(data != 'yes'){
-					alert('로그인 실패');
+				if(data == 'no'){
+					alert('id가 일치하지 않습니다');
 					return;
-				}else{
+				}else if(data == 'idOk'){
+					alert('비밀번호가 일치하지 않습니다');
+					return;
+				}else {
 					alert('로그인 성공');
 					location.href = "afterLogin.do";
 				}
