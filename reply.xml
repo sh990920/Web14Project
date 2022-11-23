@@ -15,6 +15,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+	<!-- 수정 -->
+	<update id="update">
+        UPDATE reply
+        SET replyComment = #{replyComment}, update_date = NOW()
+        WHERE userId = #{userId} and movieName = #{movieName}
+    </update>
+	
 		
 	<!-- 삭제-->
 	<delete id="delete_reply">
