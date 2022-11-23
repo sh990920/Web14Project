@@ -19,13 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
         UPDATE reply
         SET replyComment = #{replyComment}, update_date = NOW()
-        WHERE userId = #{userId} and movieName = #{movieName}
+        WHERE userIdx = #{userIdx} and movieName = #{movieName}
     </update>
 	
 		
 	<!-- 삭제-->
 	<delete id="delete_reply">
-		delete from reply where movieName = #{movieName} and userId = #{userId}
+		delete from reply where movieName = #{movieName} and replyIdx = #{replyIdx}
 	</delete>
 	
 	<!-- 댓글 불러오기-->
