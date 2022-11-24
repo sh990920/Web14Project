@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 수정 -->
 	<update id="update">
         UPDATE reply
-        SET replyComment = #{replyComment}, update_date = NOW()
+        SET replyComment = #{replyComment}
         WHERE userIdx = #{userIdx} and movieName = #{movieName}
     </update>
 	
