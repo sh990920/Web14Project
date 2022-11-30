@@ -9,6 +9,8 @@ public class MovieVO {
 	private String movieGenre;			//장르
 	private String movieClass;			//영화 심의등급
 	private String movieUrl;			//영화 경로
+	private int movieHit;				//영화 횟수
+	
 	
 	//getter, setter
 	public int getMovieIdx() {
@@ -53,6 +55,14 @@ public class MovieVO {
 	public void setMovieUrl(String movieUrl) {
 		this.movieUrl = movieUrl;
 	}
+	public int getMovieHit() {
+		return movieHit;
+	}
+	public void setMovieHit(int movieHit) {
+		this.movieHit = movieHit;
+	}
+	
+	
 	
 	
 	

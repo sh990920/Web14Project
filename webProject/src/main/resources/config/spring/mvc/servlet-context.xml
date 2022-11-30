@@ -40,7 +40,10 @@
 	</beans:bean>
 	
 	<beans:bean class="com.korea.project.MovieController">
-		<beans:constructor-arg ref="movieDaoBean"/>
+		<beans:constructor-arg name="movieDao" ref="movieDaoBean"/>
+		<beans:constructor-arg name="userDao" ref="userDaoBean"/>
+		<beans:constructor-arg name="userSelectDao" ref="userSelectDaoBean"/>
+		<beans:constructor-arg name="replyDao" ref="replyDaoBean"/>
 	</beans:bean>
 	
 	<beans:bean class="com.korea.project.UserSelectController">
@@ -58,6 +61,8 @@
 	<beans:bean class="com.korea.project.ActorController">
 		<beans:constructor-arg ref="actorDaoBean"/>
 	</beans:bean>
+	
+	
 	
 </beans:beans>
 

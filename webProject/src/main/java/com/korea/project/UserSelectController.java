@@ -1,11 +1,20 @@
 package com.korea.project;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.UserSelectDAO;
+import util.Comm;
+import vo.UserSelectVO;
+import vo.UserVO;
 
 @Controller
 public class UserSelectController {
@@ -18,5 +27,40 @@ public class UserSelectController {
 	public UserSelectController(UserSelectDAO userSelectDao) {
 		this.userSelectDao = userSelectDao;
 	}
+	
+	//마이페이지 이동
+	@RequestMapping("/myPage.do")
+	public String myPage(HttpServletRequest request, Model model) {
+		//마이페이지에서 세션 받아오기 성공
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO)session.getAttribute("login");
+		System.out.println("---------------------------------");
+		System.out.println("마이페이지 세션 이동 확인용");
+		System.out.println(vo.getUserEmail());
+		System.out.println(vo.getUserIdx());
+		System.out.println("---------------------------------");
+		List<UserSelectVO> list = userSelectDao.selectList(vo.getUserIdx());
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", list);
+		return Comm.USERSELECTPATH + "myPage.jsp";
+	}
+	
+	@RequestMapping("selectMovie.do")
+	@ResponseBody
+	public String selectMovie(UserSelectVO vo) {
+		//중복 조회
+		UserSelectVO baseVo = userSelectDao.selectCheck(vo);
+		String result = "a";
+		if(baseVo == null) {
+			int res = userSelectDao.selectOne(vo);
+			result = "no";
+			if(res == 1) {
+				result = "yes";
+			}
+		}
+		return result;
+	}
+	
+	
 
 }

@@ -5,7 +5,7 @@ public class ReplyVO {
 	private int replyIdx;			//idx
 	private String movieName;		//영화 테이블에서 끌어올 영화제목
 	private String replyComment;	//댓글 내용
-	private String userId;			//유저 테이블에서 끌어올 유저아이디
+	private String userIdx;			//유저 테이블에서 끌어올 유저아이디
 	private String replyDate;		//댓글 작성 시간
 	
 	//getter, setter
@@ -27,11 +27,11 @@ public class ReplyVO {
 	public void setReplyComment(String replyComment) {
 		this.replyComment = replyComment;
 	}
-	public String getUserId() {
-		return userId;
+	public String getUserIdx() {
+		return userIdx;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserIdx(String userIdx) {
+		this.userIdx = userIdx;
 	}
 	public String getReplyDate() {
 		return replyDate;

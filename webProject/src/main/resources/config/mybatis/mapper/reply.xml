@@ -9,5 +9,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board
 	</select> -->
 	
+	<!-- 평점 추가 -->
+	<insert id="insertReply" parameterType="reply">
+		INSERT INTO reply VALUES(
+			nextVal(seq_reply_replyIdx),
+			#{movieName},
+			#{replyComment},
+			#{userIdx},
+			sysdate()
+		)
+	</insert>
+	
+	<!-- 댓글 찾기 -->
+	<select id="selectAll" parameterType="String" resultType="reply">
+		SELECT * FROM reply WHERE movieName=#{movieName}
+	</select>
+	
+	<!-- 평점 삭제 -->
+	<delete id="deleteReply" parameterType="reply">
+		DELETE FROM reply WHERE userIdx=#{userIdx} AND movieName=#{movieName} AND replyComment=#{replyComment}
+	</delete>
 	
 </mapper>

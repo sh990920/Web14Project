@@ -9,18 +9,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board
 	</select> -->
 	
+	<!-- 회원가입 -->
 	<insert id="signUp" parameterType="user">
 		INSERT INTO user VALUES(
 			nextVal(seq_user_idx),
 			#{userId},
 			#{userPw},
 			#{userName},
-			'010-1111-1111',
+			#{userPhoneNum},
 			#{userEmail},
 			sysdate(),
-			sysdate(),
+			#{userBirthDate},
 			#{userNickName},
-			20,
+			#{userAge},
 			'no'
 		)
 	</insert>
@@ -33,7 +34,87 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user where userPw=#{userPw}
 	</select>
 	
+	<!-- 이메일 체크 -->
+	<select id="checkEmail" parameterType="String" resultType="user">
+		select * from user where userEmail=#{userEmail}
+	</select>
 	
+	<!-- 전화번호 체크 -->
+	<select id="checkPhoneNum" parameterType="String" resultType="user">
+		select * from user where userPhoneNum=#{userPhoneNum}
+	</select>
+	
+	<!-- 닉네임 체크 -->
+	<select id="checkNickName" parameterType="String" resultType="user">
+		select * from user where userNickName=#{userNickName}
+	</select>
+	
+	<!-- 카카오 회원가입 -->
+	<insert id="kakaoSignUp" parameterType="user">
+		INSERT INTO user VALUES(
+			nextVal(seq_user_idx),
+			'',
+			'',
+			'',
+			'',
+			#{userEmail},
+			sysdate(),
+			'',
+			'',
+			'',
+			'no'
+		)
+	</insert>
+	<!-- 카카오 로그인 -->
+	<select id="kakaoLogin" parameterType="String" resultType="user">
+		select * from user where userEmail=#{userEmail}
+	</select>
+	
+	<!-- 네이버 회원가입 -->
+	<insert id="naverSignUp" parameterType="user">
+		INSERT INTO user VALUES(
+			nextVal(seq_user_idx),
+			'',
+			'',
+			'',
+			#{userPhoneNum},
+			#{userEmail},
+			sysdate(),
+			#{userBirthDate},
+			'',
+			'',
+			'no'
+		)
+	</insert>
+	<!-- 네이버 로그인 -->
+	<select id="naverLogin" parameterType="String" resultType="user">
+		select * from user where userEmail=#{userEmail}
+	</select>
+	
+	<!-- 비밀번호 업데이트 -->
+	<update id="pwdUpdate" parameterType="user">
+		UPDATE user SET userPw = #{userPw} WHERE userIdx = #{userIdx}
+	</update>
+	
+	<!-- 닉네임 업데이트 -->
+	<update id="nickNameUpdate" parameterType="user">
+		UPDATE user SET userNickName = #{userNickName} WHERE userIdx = #{userIdx}
+	</update>
+	
+	<!-- 이메일 변경 -->
+	<update id="emailUpdate" parameterType="user">
+		UPDATE user SET userEmail = #{userEmail} WHERE userIdx = #{userIdx}
+	</update>
+	
+	<!-- 전화번호 변경 -->
+	<update id="phoneNumUpdate" parameterType="user">
+		UPDATE user SET userPhoneNum = #{userPhoneNum} WHERE userIdx = #{userIdx}
+	</update>	
+	
+	<!-- 전체 유저 조회 -->
+	<select id="userList" resultType="user">
+		SELECT * FROM user
+	</select>
 </mapper>
 
 

@@ -9,5 +9,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board
 	</select> -->
 	
+	<!-- 영화추가 -->
+	<insert id="movieInsert" parameterType="movie">
+		INSERT INTO movie VALUES(
+			nextVal(seq_movie_movieIdx),
+			#{movieName},
+			#{movieLaunchDate},
+			#{movieStory},
+			#{movieGenre},
+			#{movieClass},
+			#{movieUrl},
+			0
+		)
+	</insert>
+	
+	<!-- 영화 전체조회(영화 조회순별 정렬) -->
+	<select id="movieList" resultType="movie">
+		SELECT * FROM movie ORDER BY movieHit DESC
+	</select>
+	
+	<!-- 영화 전체조회(영화 제목으로 정보 끌어오기) -->
+	<select id="movieSelectList" resultType="movie" parameterType="String">
+		SELECT * FROM movie WHERE movieName=#{movieName}
+	</select>
+	
+	<!-- 영화 한개 가져오기 -->
+	<select id="movieSelect" parameterType="int" resultType="movie">
+		SELECT * FROM movie WHERE movieIdx=#{movieIdx}
+	</select>
+	
+	<!-- 영화 조회수 업데이트 -->
+	<update id="movieHitUpdate" parameterType="int">
+		UPDATE movie SET movieHit = movieHit + 1
+		WHERE movieIdx = #{movieIdx}
+	</update>
 	
 </mapper>
