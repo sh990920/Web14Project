@@ -1,0 +1,130 @@
+/* 컨테이너  */
+.signup_container{
+            
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+}
+header{width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+}
+.gnb{
+    display: flex;
+}
+.btn_content{
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    
+    
+}
+.btn{
+    background-color: #0063e5;
+    border-radius: 5px;
+    color: #fff;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 10px;
+    
+}
+.btn:hover{
+    background-color: #3e83dd;
+}
+
+.signup_container>h1{
+    font-size: 44px;
+    margin-bottom: 30px;
+}
+.input_container{
+    width: 600px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.input_box{
+    width: 600px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+}
+.input{
+    width: 200px;
+    font-size: 12px;
+    height: 30px;height: 30px;
+    box-sizing: border-box;
+    margin : 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #d9d6d6;
+    color: #f7f4f4;
+    background-color: darkgray;
+}
+.input::-webkit-input-placeholder{
+    color: #f7f4f4;
+}
+
+#emailId{
+    width: 40%;
+    height: 30px;
+    box-sizing: border-box;
+    margin-left : 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #d9d6d6;
+    color: #f7f4f4;
+    background-color: darkgray;
+}
+
+input:focus::-webkit-input-placeholder{
+    color:transparent;
+}
+
+
+.signup_btn{
+    width:520px;
+    height: 70px;
+    font-size: 20px;
+}
+label{
+    width: 90px;
+    position:absolute;
+    left: 30px;
+    font-size: 12px;
+    padding: 0 5px;
+}
+.box{
+    width:300px;
+}
+.ol_box{
+    margin-left: 85px;
+}
+
+.select_box,
+.birth_box{
+  font-size: 12px;
+  height: 30px;
+  box-sizing: border-box;
+  margin: 5px;
+  padding: 5px 0 5px 10px;
+  border-radius: 8px;
+  border: 1px solid #d9d6d6;
+    color: #f7f4f4;
+    background-color: darkgray;
+}
+.overlab_btn{
+    width: 70px;
+    height: 30px;
+}

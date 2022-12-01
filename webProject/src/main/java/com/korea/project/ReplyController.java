@@ -22,11 +22,11 @@ public class ReplyController {
 		this.replyDao = replyDao;
 	}
 	
+	//평점 추가
 	@RequestMapping("insertReply.do")
 	@ResponseBody
-	public String insertReply(ReplyVO vo) {
-		
-		int res = replyDao.insertReply(vo);
+	public String replyInsert(ReplyVO vo) {	
+		int res = replyDao.replyInsert(vo);
 		String result = "no";
 		if(res == 1) {
 			result = "yes";
@@ -34,10 +34,11 @@ public class ReplyController {
 		return result;
 	}
 	
+	//평점 삭제
 	@RequestMapping("deleteReply")
 	@ResponseBody
-	public String deleteReply(ReplyVO vo) {
-		int res = replyDao.deleteReply(vo);
+	public String replyDelete(ReplyVO vo) {
+		int res = replyDao.replyDelete(vo);
 		String result = "no";
 		if(res == 1) {
 			result = "yes";

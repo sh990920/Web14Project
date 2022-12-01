@@ -9,5 +9,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board
 	</select> -->
 	
+	<!-- 배우추가 -->
+	<insert id="actorInsert" parameterType="actor">
+		INSERT INTO actor VALUES(
+			nextVal(seq_actor_actorIdx),
+			#{movieName},
+			#{actorName}
+		)
+	</insert>
+	
+	<!-- 영화 제목에 맞는 배우들 끌어오기 -->
+	<select id="actorList" parameterType="String" resultType="actor">
+		SELECT * FROM actor WHERE movieName=#{movieName}
+	</select>
 	
 </mapper>

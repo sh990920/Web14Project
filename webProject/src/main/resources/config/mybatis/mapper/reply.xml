@@ -21,12 +21,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 댓글 찾기 -->
-	<select id="selectAll" parameterType="String" resultType="reply">
+	<select id="replyList" parameterType="String" resultType="reply">
 		SELECT * FROM reply WHERE movieName=#{movieName}
 	</select>
 	
 	<!-- 평점 삭제 -->
-	<delete id="deleteReply" parameterType="reply">
+	<delete id="replyDelete" parameterType="reply">
 		DELETE FROM reply WHERE userIdx=#{userIdx} AND movieName=#{movieName} AND replyComment=#{replyComment}
 	</delete>
 	

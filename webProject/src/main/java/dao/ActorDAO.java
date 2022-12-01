@@ -1,6 +1,10 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
+
+import vo.ActorVO;
 
 public class ActorDAO {
 	
@@ -10,4 +14,17 @@ public class ActorDAO {
 	public ActorDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+	
+	//배우추가
+	public int actorInsert(ActorVO vo) {
+		int res = sqlSession.insert("actor.actorInsert", vo);
+		return res;
+	}
+	
+	//배우 목록 꺼내오기
+	public List<ActorVO> actorList(String movieName){
+		List<ActorVO> actorList = sqlSession.selectList("actor.actorList", movieName);
+		return actorList;
+	}
+	
 }

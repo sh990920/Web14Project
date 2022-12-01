@@ -112,7 +112,7 @@ button {
 				</tr>
 				<tr>
 					<td>영화 개봉 날짜</td>
-					<td><input type="text" name="movieLaunchDate"></td>
+					<td><input type="date" name="movieLaunchDate"></td>
 				</tr>
 				<tr>
 					<td>영화 장르</td>
@@ -129,6 +129,10 @@ button {
 		</div>
 	</form>
 	<script>
+	//배우숫자 저장 변수
+		
+		
+	
 		function movieInsert(f){
 			var movieName = f.movieName.value;
 			var movieUrl = f.movieUrl.value;
@@ -145,6 +149,20 @@ button {
 						"&movieLaunchDate=" + movieLaunchDate +
 						"&movieGenre=" + movieGenre;
 			sendRequest(url, param, resultFn, "post");
+			
+			//영화배우 넘겨주는 파라미터
+			var actors = f.actors.value;
+			//액터 배열로 넘김
+			var actor = actors.split(',');
+			actorNum = actor.length;
+			
+			var urll = "actorInsert.do";
+			for(var i = 0; i < actor.length; i++){
+				var par = "movieName=" + movieName +
+						  "&actorName=" + actor[i];
+				sendRequest(urll, par, result, "post");
+			}
+			resultSet();
 		}
 		
 		function resultFn() {
@@ -155,8 +173,22 @@ button {
 					return;
 				}
 				alert("영화 추가 성공");
-				location.href = "managerPage.do";
 			}
+		}
+		
+		function result(){
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var data = xhr.responseText;
+				if(data == 'no'){
+					alert("배우 추가 실패");
+					return;
+				}
+			}
+		}
+		
+		function resultSet(){
+			alert("배우 추가 성공");
+			location.href = "managerPage.do";	
 		}
 	
 	</script>

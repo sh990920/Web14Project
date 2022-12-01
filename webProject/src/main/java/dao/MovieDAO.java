@@ -29,25 +29,24 @@ public class MovieDAO {
 	}
 	
 	//영화 제목으로 영화 정보 끌어오기
-	public List<MovieVO> movieSelectList(List<String> movieNameList){
-		List<MovieVO> list = new ArrayList<MovieVO>();
+	public List<MovieVO> movieList(List<String> movieNameList){
+		List<MovieVO> movieList = new ArrayList<MovieVO>();
 		for(int i = 0; i < movieNameList.size(); i++) {
 			MovieVO vo = sqlSession.selectOne("movie.movieSelectList", movieNameList.get(i));
-			list.add(vo);
+			movieList.add(vo);
 		}
-		
-		return list;
+		return movieList;
 	}
 	
-	//
-	public MovieVO movieSelect(int movieIdx) {
-		MovieVO vo = sqlSession.selectOne("movie.movieSelect", movieIdx);
-		return vo;
+	//영화 정보 가져오기
+	public MovieVO movieAbout(int movieIdx) {
+		MovieVO movieVO = sqlSession.selectOne("movie.movieAbout", movieIdx);
+		return movieVO;
 	}
 	
 	//영화 조회수증가
-	public int updateMovieHit(int movieIdx) {
-		int res = sqlSession.update("movieHitUpdate", movieIdx);
+	public int movieHitUpDate(int movieIdx) {
+		int res = sqlSession.update("movieHitUpDate", movieIdx);
 		return res;
 	}
 	

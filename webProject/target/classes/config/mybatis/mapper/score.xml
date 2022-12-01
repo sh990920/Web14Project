@@ -9,5 +9,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board
 	</select> -->
 	
+	<insert id="scoreInsert" parameterType="score">
+		INSERT INTO score VALUES(
+			nextVal(seq_score_scoreIdx),
+			#{userIdx},
+			#{movieName},
+			#{starScore}
+		)
+	</insert>
+	
+	<select id="scoreCheck" resultType="score" parameterType="score">
+		SELECT * FROM score WHERE userIdx=#{userIdx} AND movieName=#{movieName}
+	</select>
+	
+	<select id="scoreList" resultType="score" parameterType="String">
+		SELECT * FROM score WHERE movieName=#{movieName}
+	</select>
 	
 </mapper>

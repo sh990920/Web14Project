@@ -46,23 +46,29 @@ public class UserController {
 		return Comm.USERPATH + "login.jsp";
 	}
 
-	// 로그인
+	//로그인
 	@RequestMapping("login.do")
 	@ResponseBody
 	public String login(UserVO vo) {
-		UserVO baseVO = userDao.loginId(vo);
+		//파라미터로 받아온 vo로 정보를 찾아봄
+		UserVO baseVO = userDao.userIdCheck(vo);
 		String result = "no";
+		//만약 vo로 관련된 나머지 정보가 있다면 if문으로 들어감
 		if (baseVO != null) {
 			result = "idOk";
+			//아이디는 있으므로 비밀번호 체크
 			if (baseVO.getUserPw().equals(vo.getUserPw())) {
-				// 세션에 로그인 정보 저장
+				//비밀번호가 맞다면
+				//세션에 로그인 정보가 없다면if문으로 들어감
 				if (session == null) {
-					// 세션에서 값 얻기
+					//세션에서 값 얻기
 					session = request.getSession();
-					// 세션에 값 저장
+					//세션에 값 저장
 					session.setAttribute("login", baseVO);
 				} else {
+					//세션이 있다면 else문으로 들어감
 					try {
+						//login이라는 세션이 있는지 확인 없으면 if문으로 들어감
 						if (session.getAttribute("login") == null) {
 							// 세션에서 값 얻기
 							session = request.getSession();
@@ -87,9 +93,12 @@ public class UserController {
 	@RequestMapping("kakaoLogin.do")
 	@ResponseBody
 	public String kakaoLogin(UserVO vo) {
+		//카카오 간편로그인에서 받아온 이메일로 정보를 확인
 		UserVO baseVO = userDao.kakaoLogin(vo.getUserEmail());
 		String result = "no";
+		//카카오에서 받아온 이메일로 찾은 vo값이 있다면 if문으로 들어감
 		if (baseVO != null) {
+			//로그인 완료
 			result = "login";
 			// 세션에 로그인 정보 저장
 			if (session == null) {
@@ -107,8 +116,10 @@ public class UserController {
 					System.out.println("세션 받기 실패");
 				}
 			}
-		} else {
+		} else { // 카카오에서 받아온 이메일로 vo들을 찾았을때 값이 없다면 else문으로 들어감
+			//이후 카카오에서 받은 정보로 회원가입
 			int res = userDao.kakaoSignUp(vo);
+			//회원가입이 잘되었다면 result에 회원가입이 완료되었다고 알려주기
 			if (res == 1) {
 				result = "signUp";
 				// 세션에 로그인 정보 저장
@@ -134,7 +145,8 @@ public class UserController {
 		return result;
 	}
 
-	// 네이버 로그인
+	//네이버 로그인
+	//카카오 로그인과 비슷한 내용이니까 위에 참고
 	@RequestMapping("naverLogin.do")
 	@ResponseBody
 	public String naverLogin(UserVO vo) {
@@ -185,13 +197,13 @@ public class UserController {
 		return result;
 	}
 
-	// 회원가입 페이지로 이동
+	//회원가입 페이지로 이동
 	@RequestMapping(value = { "/signUpForm.do" })
-	public String join() {
+	public String signUpForm() {
 		return Comm.USERPATH + "signUp.jsp";
 	}
 
-	// 회원가입
+	//회원가입
 	@RequestMapping("signUp.do")
 	public String signUp(UserVO vo, Model model) {
 		String bd = vo.getUserBirthDate();
@@ -210,7 +222,7 @@ public class UserController {
 
 	// 회원가입 이후 웰컴창으로 이동
 	@RequestMapping("/welcome.do")
-	public String welcome() {
+	public String welcomeForm() {
 		return Comm.USERPATH + "Welcome.jsp";
 	}
 
@@ -218,7 +230,7 @@ public class UserController {
 	@RequestMapping("idCheck.do")
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String userId) throws Exception {
-		UserVO baseVO = userDao.checkId(userId);
+		UserVO baseVO = userDao.userIdCheck(userId);
 		String result = "no";
 		try {
 			if (baseVO == null) {
@@ -235,7 +247,7 @@ public class UserController {
 	@RequestMapping("emailCheck.do")
 	@ResponseBody
 	public String emailCheck(@RequestParam("userEmail") String userEmail) throws Exception {
-		UserVO baseVO = userDao.checkEmail(userEmail);
+		UserVO baseVO = userDao.userEmailCheck(userEmail);
 		String res = "no";
 		try {
 			if (baseVO == null) {
@@ -250,7 +262,7 @@ public class UserController {
 	@RequestMapping("phoneNumCheck.do")
 	@ResponseBody
 	public String phoneNumCheck(@RequestParam("userPhoneNum") String userPhoneNum) {
-		UserVO baseVO = userDao.checkPhoneNum(userPhoneNum);
+		UserVO baseVO = userDao.userPhoneNumCheck(userPhoneNum);
 		String res = "no";
 		try {
 			if(baseVO == null) {
@@ -266,7 +278,7 @@ public class UserController {
 	@RequestMapping("nickNameCheck.do")
 	@ResponseBody
 	public String nickNameCheck(@RequestParam("userNickName") String userNickName) throws Exception {
-		UserVO baseVO = userDao.checkNickName(userNickName);
+		UserVO baseVO = userDao.userNickNameCheck(userNickName);
 		String res = "no";
 		try {
 			if (baseVO == null) {
@@ -281,10 +293,10 @@ public class UserController {
 	//비밀번호 변경
 	@RequestMapping("pwdupdate.do")
 	@ResponseBody
-	public String pwdupdate(UserVO vo) {
+	public String userPwUpDate(UserVO vo) {
 		UserVO baseVO = (UserVO)session.getAttribute("login");
 		vo.setUserIdx(baseVO.getUserIdx());
-		int res = userDao.pwdUpdate(vo);
+		int res = userDao.userPwUpDate(vo);
 		String result = "no";
 		if(res == 1) {
 			result = "yes";
@@ -295,10 +307,10 @@ public class UserController {
 	//닉네임 변경
 	@RequestMapping("nickNameUpdate.do")
 	@ResponseBody
-	public String nickNameUpdate(UserVO vo) {
+	public String userNickNameUpDate(UserVO vo) {
 		UserVO baseVo = (UserVO)session.getAttribute("login");
 		vo.setUserIdx(baseVo.getUserIdx());
-		int res = userDao.nickNameUpdate(vo);
+		int res = userDao.userNickNameUpDate(vo);
 		String result = "no";
 		if(res == 1) {
 			result = "yes";
@@ -309,10 +321,10 @@ public class UserController {
 	//이메일 변경
 	@RequestMapping("emailUpdate.do")
 	@ResponseBody
-	public String emailUpdate(UserVO vo) {
+	public String userEmailUpDate(UserVO vo) {
 		UserVO baseVo = (UserVO)session.getAttribute("login");
 		vo.setUserIdx(baseVo.getUserIdx());
-		int res = userDao.emailUpdate(vo);
+		int res = userDao.userEmailUpDate(vo);
 		String result = "no";
 		if(res == 1) {
 			result = "yes";
@@ -322,10 +334,10 @@ public class UserController {
 	//전화번호 변경
 	@RequestMapping("phoneNumUpdate.do")
 	@ResponseBody
-	public String phoneNumUpdate(UserVO vo) {
+	public String userPhoneNumUpDate(UserVO vo) {
 		UserVO baseVo = (UserVO)session.getAttribute("login");
 		vo.setUserIdx(baseVo.getUserIdx());
-		int res = userDao.phoneNumUpdate(vo);
+		int res = userDao.userPhoneNumUpDate(vo);
 		String result = "no";
 		if(res == 1) {
 			result = "yes";
@@ -336,7 +348,7 @@ public class UserController {
 	// 세션 삭제
 	@RequestMapping("sessionDrop.do")
 	@ResponseBody
-	public String sessionDrop() {
+	public String sessionDelete() {
 		String result = "no";
 		if (session != null) {
 			System.out.println("세션삭제 1 : " + session.getAttribute("login"));

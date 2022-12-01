@@ -34,12 +34,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 영화 한개 가져오기 -->
-	<select id="movieSelect" parameterType="int" resultType="movie">
+	<select id="movieAbout" parameterType="int" resultType="movie">
 		SELECT * FROM movie WHERE movieIdx=#{movieIdx}
 	</select>
 	
 	<!-- 영화 조회수 업데이트 -->
-	<update id="movieHitUpdate" parameterType="int">
+	<update id="movieHitUpDate" parameterType="int">
 		UPDATE movie SET movieHit = movieHit + 1
 		WHERE movieIdx = #{movieIdx}
 	</update>

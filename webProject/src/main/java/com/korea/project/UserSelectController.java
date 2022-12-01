@@ -39,20 +39,21 @@ public class UserSelectController {
 		System.out.println(vo.getUserEmail());
 		System.out.println(vo.getUserIdx());
 		System.out.println("---------------------------------");
-		List<UserSelectVO> list = userSelectDao.selectList(vo.getUserIdx());
+		List<UserSelectVO> selectList = userSelectDao.userSelectList(vo.getUserIdx());
 		model.addAttribute("vo", vo);
-		model.addAttribute("list", list);
+		model.addAttribute("list", selectList);
 		return Comm.USERSELECTPATH + "myPage.jsp";
 	}
 	
+	//찜
 	@RequestMapping("selectMovie.do")
 	@ResponseBody
-	public String selectMovie(UserSelectVO vo) {
+	public String userSelectInsert(UserSelectVO vo) {
 		//중복 조회
-		UserSelectVO baseVo = userSelectDao.selectCheck(vo);
+		UserSelectVO checkVO = userSelectDao.userSelectCheck(vo);
 		String result = "a";
-		if(baseVo == null) {
-			int res = userSelectDao.selectOne(vo);
+		if(checkVO == null) {
+			int res = userSelectDao.userSelectInsert(vo);
 			result = "no";
 			if(res == 1) {
 				result = "yes";
@@ -61,6 +62,17 @@ public class UserSelectController {
 		return result;
 	}
 	
+	//찜 목록 삭제
+	@RequestMapping("selectDel.do")
+	@ResponseBody
+	public String userSelectDelete(UserSelectVO vo) {
+		int res = userSelectDao.userSelectDelete(vo);
+		String result = "no";
+		if(res == 1) {
+			result = "yes";
+		}
+		return result;
+	}
 	
 
 }

@@ -10,12 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> -->
 	
 	<!-- 유저 idx에 맞는 영화제목 전체 조회 -->
-	<select id="selectList" resultType="userSelect" parameterType="int">
+	<select id="userSelectList" resultType="userSelect" parameterType="int">
 		select * from userSelect where userIdx=#{userIdx}
 	</select>
 	
 	<!-- 찜 목록 추가하기 -->
-	<insert id="selectOne" parameterType="userSelect">
+	<insert id="userSelectInsert" parameterType="userSelect">
 		INSERT INTO userSelect VALUES(
 			nextVal(seq_userSelect_userSelectIdx),
 			#{userIdx},
@@ -24,8 +24,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 찜목록 중복체크 -->
-	<select id="selectCheck" resultType="userSelect" parameterType="userSelect">
+	<select id="userSelectCheck" resultType="userSelect" parameterType="userSelect">
 		SELECT * FROM userSelect WHERE userIdx=#{userIdx} AND movieName=#{movieName}
 	</select>
+	
+	<delete id="userSelectDelete" parameterType="userSelect">
+		DELETE FROM userSelect WHERE movieName=#{movieName} AND userIdx=#{userIdx};
+	</delete>
 	
 </mapper>

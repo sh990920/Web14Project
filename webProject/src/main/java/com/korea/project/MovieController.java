@@ -12,13 +12,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dao.ActorDAO;
 import dao.MovieDAO;
 import dao.ReplyDAO;
+import dao.ScoreDAO;
 import dao.UserDAO;
 import dao.UserSelectDAO;
 import util.Comm;
+import vo.ActorVO;
 import vo.MovieVO;
 import vo.ReplyVO;
+import vo.ScoreVO;
 import vo.UserSelectVO;
 import vo.UserVO;
 
@@ -31,16 +35,22 @@ public class MovieController {
 	//세션 불러오기
 	HttpSession session;
 	
+	//DAO생성
 	MovieDAO movieDao;
 	UserDAO userDao;
 	UserSelectDAO userSelectDao;
 	ReplyDAO replyDao;
+	ActorDAO actorDao;
+	ScoreDAO scoreDao;
 	
-	public MovieController(MovieDAO movieDao, UserDAO userDao, UserSelectDAO userSelectDao, ReplyDAO replyDao) {
+	//DAO생성자로 받아오기
+	public MovieController(MovieDAO movieDao, UserDAO userDao, UserSelectDAO userSelectDao, ReplyDAO replyDao, ActorDAO actorDao, ScoreDAO scoreDao) {
 		this.movieDao = movieDao;
 		this.userDao = userDao;
 		this.userSelectDao = userSelectDao;
 		this.replyDao = replyDao;
+		this.actorDao = actorDao;
+		this.scoreDao = scoreDao;
 	}
 		
 	//로그인 전 화면
@@ -50,43 +60,37 @@ public class MovieController {
 	}
 
 	//로그인 후 화면
-	//영화 정보 싹다 끌어와야되고
 	@RequestMapping(value = {"afterLogin.do"})
 	public String Main(Model model) {
 		//영화 조회수 세션 삭제
+		//다시 movie.jsp로 들어갈때 조회수가 증가하게 초기화
 		session = request.getSession();
 		session.removeAttribute("s");
-		//전체 영화 조회
-		//movieHit 횟수로 정렬
-		//리스트로 전달
-		//뿌리기 끝(영화 조회수)
+		
+		//유저 로그인 세션 받아오기
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO)session.getAttribute("login");
 		
 		//리스트로 영화 받아오기(조회순 정렬)
 		List<MovieVO> hitList = movieDao.movieList();
 		model.addAttribute("movieHit", hitList);
 		
-		//사용자 조회(idx)
-		//찜 목록 들어가서 idx로 값 조회
-		//찜 목록에 있는 영화 제목 끌어오기
-		//영화 제목들을 리스트로 받아서 영화 테이블에 입력
-		//movie객체로 전달받은 값들을 리스트에 저장
-		//뿌리기 끝(찜)
-		//아직 정보가 없어서 나중에 테스트
-		HttpSession session = request.getSession();
-		UserVO vo = (UserVO)session.getAttribute("login");
-		//로그인 사용자 정보 끌어오기 성공
-		System.out.println("로그인한 사용자의 idx : " + vo.getUserIdx());
-		List<UserSelectVO> selectList = userSelectDao.selectList(vo.getUserIdx());
+		//유저 idx로 찜 목록 받아오기
+		List<UserSelectVO> selectList = userSelectDao.userSelectList(vo.getUserIdx());
+		
 		//영화 제목 받아오는 리스트 생성
 		List<String> movieNameList = new ArrayList<String>();
+		
 		//리스트안에 있는 영화제목들을 영화제목리스트에 넣어준다.
 		for(int i = 0; i < selectList.size(); i++) {
 			movieNameList.add(selectList.get(i).getMovieName());
 		}
-		//movie테이블 끌어오기
-		List<MovieVO> movieSelectList = movieDao.movieSelectList(movieNameList);
-		model.addAttribute("movieSelect", movieSelectList);
 		
+		//movie테이블 끌어오기
+		List<MovieVO> movieSelectList = movieDao.movieList(movieNameList);
+		//모델객체에 바인딩
+		model.addAttribute("movieSelect", movieSelectList);
+		//로그인 이후 페이지로 이동
 		return Comm.MOVIEPATH + "afterLogin.jsp";
 	}
 	
@@ -98,26 +102,49 @@ public class MovieController {
 		UserVO vo = (UserVO)session.getAttribute("login");
 		
 		//영화 정보가져오기
-		MovieVO baseVO = movieDao.movieSelect(movieVo.getMovieIdx());
-		//영화 시청횟수 증가
+		MovieVO baseVO = movieDao.movieAbout(movieVo.getMovieIdx());
+		//영화 시청횟수 증가를 위해 세션에 값을 저장
 		session = request.getSession();
 		String show = (String)session.getAttribute("s");
+		//세션값이 없다면 세션에 값을 저장
 		if(show == null) {
-			int res = movieDao.updateMovieHit(baseVO.getMovieIdx());
+			int res = movieDao.movieHitUpDate(baseVO.getMovieIdx());
 			session.setAttribute("s", "check");
 		}
+		
 		//댓글 목록 가져오기
-		List<ReplyVO> list = replyDao.replySelect(baseVO.getMovieName());
+		List<ReplyVO> list = replyDao.replyList(baseVO.getMovieName());
+		//배우 목록 가져오기
+		List<ActorVO> actorList = actorDao.actorList(baseVO.getMovieName());
+		//별점 목록 가져오기
+		List<ScoreVO> scoreList = scoreDao.scoreList(baseVO.getMovieName());
+		//별점 총점 변수
+		double totalScore = 0;
+		//별점 평균 점수
+		double avgScore = 0;
+		//별점 리스트가 비어있지않으면
+		//별점 리스트의 별점들을 총점에 더해준다.
+		//이후 평균 점수로 나눠서 movie.jsp로 보내줌
+		if(scoreList != null) {
+			for(int i = 0; i < scoreList.size(); i++) {
+				totalScore += scoreList.get(i).getStarScore();
+			}
+			avgScore = totalScore / scoreList.size();
+		}
 		
-		
+		//모델 객체에 바인딩
 		model.addAttribute("movieOne", baseVO);
 		model.addAttribute("user", vo);
 		model.addAttribute("list", list);
+		model.addAttribute("actors", actorList);
+		model.addAttribute("avgScore", avgScore);
+		//영화 페이지로 이동
 		return Comm.MOVIEPATH + "movie.jsp";
 	}
 	
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //관리자 관련 코드	
+	
 	//매니저 확인
 	@RequestMapping("managerPage.do")
 	public String managerPage() {
@@ -129,9 +156,10 @@ public class MovieController {
 	
 	//영화 추가 페이지
 	@RequestMapping("insertMovieForm.do")
-	public String insertMovieForm() {
+	public String movieInsertForm() {
 		return Comm.MOVIEPATH + "insertMovie.jsp";
 	}
+	
 	//영화 추가하기
 	@RequestMapping("movieInsert.do")
 	@ResponseBody
@@ -146,12 +174,12 @@ public class MovieController {
 	
 	//영화 변경 페이지
 	@RequestMapping("updateMovieForm.do")
-	public String updateMovieForm() {
+	public String movieUpDateForm() {
 		return Comm.MOVIEPATH + "updateMovie.jsp";
 	}
 	//사용자 조회 페이지
 	@RequestMapping("selectUsersForm.do")
-	public String selectUsersForm() {
+	public String UserAboutForm() {
 		List<UserVO> list = userDao.userList();
 		request.setAttribute("list", list);
 		return Comm.MOVIEPATH + "selectUsers.jsp";

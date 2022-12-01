@@ -17,20 +17,20 @@ public class ReplyDAO {
 	}
 	
 	//댓글추가
-	public int insertReply(ReplyVO vo) {
+	public int replyInsert(ReplyVO vo) {
 		int res = sqlSession.insert("reply.insertReply", vo);
 		return res;
 	}
 	
 	//댓글 불러오기
-	public List<ReplyVO> replySelect(String movieName) {
-		List<ReplyVO> list = sqlSession.selectList("reply.selectAll", movieName);
-		return list;
+	public List<ReplyVO> replyList(String movieName) {
+		List<ReplyVO> replyList = sqlSession.selectList("reply.replyList", movieName);
+		return replyList;
 	}
 	
 	//평점 삭제
-	public int deleteReply(ReplyVO vo) {
-		int res = sqlSession.delete("reply.deleteReply", vo);
+	public int replyDelete(ReplyVO vo) {
+		int res = sqlSession.delete("reply.replyDelete", vo);
 		return res;
 	}
 	

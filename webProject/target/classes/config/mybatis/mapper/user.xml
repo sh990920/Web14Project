@@ -26,26 +26,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-	<!-- 로그인 -->
-	<select id="loginId" parameterType="String" resultType="user">
+	<!-- 로그인 아이디 -->
+	<select id="userIdCheck" parameterType="String" resultType="user">
 		select * from user where userId=#{userId}
 	</select>
-	<select id="loginPw" parameterType="String" resultType="user">
+	<!-- 로그인 비밀번호 -->
+	<select id="userPwCheck" parameterType="String" resultType="user">
 		select * from user where userPw=#{userPw}
 	</select>
 	
 	<!-- 이메일 체크 -->
-	<select id="checkEmail" parameterType="String" resultType="user">
+	<select id="userEmailCheck" parameterType="String" resultType="user">
 		select * from user where userEmail=#{userEmail}
 	</select>
 	
 	<!-- 전화번호 체크 -->
-	<select id="checkPhoneNum" parameterType="String" resultType="user">
+	<select id="userPhoneNumCheck" parameterType="String" resultType="user">
 		select * from user where userPhoneNum=#{userPhoneNum}
 	</select>
 	
 	<!-- 닉네임 체크 -->
-	<select id="checkNickName" parameterType="String" resultType="user">
+	<select id="userNickNameCheck" parameterType="String" resultType="user">
 		select * from user where userNickName=#{userNickName}
 	</select>
 	
@@ -92,22 +93,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 비밀번호 업데이트 -->
-	<update id="pwdUpdate" parameterType="user">
+	<update id="userPwUpDate" parameterType="user">
 		UPDATE user SET userPw = #{userPw} WHERE userIdx = #{userIdx}
 	</update>
 	
 	<!-- 닉네임 업데이트 -->
-	<update id="nickNameUpdate" parameterType="user">
+	<update id="userNickNameUpDate" parameterType="user">
 		UPDATE user SET userNickName = #{userNickName} WHERE userIdx = #{userIdx}
 	</update>
 	
 	<!-- 이메일 변경 -->
-	<update id="emailUpdate" parameterType="user">
+	<update id="userEmailUpDate" parameterType="user">
 		UPDATE user SET userEmail = #{userEmail} WHERE userIdx = #{userIdx}
 	</update>
 	
 	<!-- 전화번호 변경 -->
-	<update id="phoneNumUpdate" parameterType="user">
+	<update id="userPhoneNumUpDate" parameterType="user">
 		UPDATE user SET userPhoneNum = #{userPhoneNum} WHERE userIdx = #{userIdx}
 	</update>	
 	

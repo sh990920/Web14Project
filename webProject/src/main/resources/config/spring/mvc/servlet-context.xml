@@ -44,6 +44,8 @@
 		<beans:constructor-arg name="userDao" ref="userDaoBean"/>
 		<beans:constructor-arg name="userSelectDao" ref="userSelectDaoBean"/>
 		<beans:constructor-arg name="replyDao" ref="replyDaoBean"/>
+		<beans:constructor-arg name="actorDao" ref="actorDaoBean"/>
+		<beans:constructor-arg name="scoreDao" ref="scoreDaoBean"/>
 	</beans:bean>
 	
 	<beans:bean class="com.korea.project.UserSelectController">

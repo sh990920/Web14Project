@@ -1,0 +1,151 @@
+.header{width: 100%;
+    
+    height: 200px;
+    display: flex;
+}
+.gnb{
+    display: flex;
+    margin-bottom: 100px;
+}
+.btn_content{
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+}
+.btn{
+    background-color: #0063e5;
+    border-radius: 5px;
+    color: #fff;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 10px;
+    
+}
+.btn:hover{
+    background-color: #3e83dd;
+}
+.mypage_container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    
+}
+.tab_box{
+    width: 1000px;
+    display: flex;
+    position: relative;
+}
+.tab_box ul{
+    position: relative;
+}
+ 
+.tabs>li{
+    box-sizing: border-box;
+    width: 300px;
+    text-align: center;
+    line-height: 80px;
+}
+.tabs>li>input{
+    display: none;
+}
+.tabs>li>label{
+    background-color: #0063e5;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    width:100%;
+}
+.tab_content{
+    border: 1px solid lightgray;
+    position: absolute;
+    width: 700px;
+    height: 410px;
+    left: 300px;
+    top: 0px;
+    display: none;
+    border-radius: 0 8px 8px 0;
+    overflow: auto;
+}
+
+.input_box{
+    display: flex;
+    align-items: center;
+}
+label{
+    width: 90px;
+    font-size: 12px;
+    padding: 0 5px;
+}
+.input{
+    width: 200px;
+    font-size: 12px;
+    height: 30px;
+    box-sizing: border-box;
+    margin : 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #d9d6d6;
+    color: #f7f4f4;
+    background-color: darkgray;
+}
+.input::-webkit-input-placeholder{
+    color: #f7f4f4;
+}
+.overlab_btn{
+    width: 70px;
+    height: 30px;
+}
+.select_box{
+    font-size: 12px;
+    height: 30px;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #d9d6d6;
+    color: #f7f4f4;
+    background-color: darkgray;
+}
+
+.wish_list{
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+}
+th{
+    border: 1px solid #d9d6d6;
+    
+}
+th:nth-child(1){
+    width: 80%;
+    background-color: #0063e5;
+}
+th:nth-child(2){
+    width: 20%;
+    background-color: #0063e5;
+}
+td{
+    border: 1px solid #d9d6d6;
+    
+}
+.tabs>li>input:checked ~ label{
+    background-color: darkgray;
+    color: #f7f4f4;
+    border-right: none;
+}
+.tabs>li>input:checked ~ .tab_content{
+    display: block;
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tabs>li>input:checked ~ .tab_content>h2{
+    margin: 50px 0 50px 0;   
+}
+
+
